@@ -105,7 +105,7 @@ export default function Home() {
 
       <h3 style={{ textAlign: "center" }}>My TODO LIST</h3>
       <div style={{ width: "100vw", display: "flex", justifyContent: "center", flexDirection: "column", textAlign: "center" }}>
-        {data && data.todos.map(todo => {
+        {data && data.todos && data.todos.map(todo => {
           console.log(todo)
           return <div key={todo.id}>
             <div style={{ textAlign: "center", display: "flex", justifyContent: "center" }}>
