@@ -1,7 +1,8 @@
 import React from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-
+import im from '../jam.png';
+import img from "../trio.png"
 // runtime query
 
 
@@ -85,30 +86,44 @@ export default function Home() {
 
   return (
     <div className="container">
-      <label>
-        <h1> Add Task </h1>
-        <input type="text" ref={node => {
+      <div style={{ display: "flex", width: "100vw", justifyContent: "center" }}>
+        <img src={im} alt="main" style={{ width: "300px" }} />
+
+      </div>
+      {/* <img src={img} style={{ width: "300px" }} /> */}
+      <div style={{ display: "flex", width: "100vw", justifyContent: "center" }} >
+        <h1> Add Task </h1><br />
+
+      </div > <div style={{ width: "100vw", display: "flex", justifyContent: "center" }}>
+        <input style={{ padding: "10px", margin: "0 10px" }} type="text" ref={node => {
           inputText = node;
         }} />
-      </label>
-      <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask}>Add Task</button>
 
+      </div>
       <br /> <br />
 
-      <h3>My TODO LIST</h3>
+      <h3 style={{ textAlign: "center" }}>My TODO LIST</h3>
+      <div style={{ width: "100vw", display: "flex", justifyContent: "center", flexDirection: "column", textAlign: "center" }}>
+        {data.todos.map(todo => {
+          console.log(todo)
+          return <div key={todo.id}>
+            <div style={{ textAlign: "center", display: "flex", justifyContent: "center" }}>
+              <p> {todo.task} </p>
 
 
-      {data.todos.map(todo => {
-        console.log(todo)
-        return <div key={todo.id}>
+            </div>
 
-          <p> {todo.task} </p>
+            <div >
+              <button style={{ padding: "10px", margin: "10px" }} onClick={() => delTask(todo.id)}>Remove</button>
+              <button style={{ padding: "10px", margin: "10px" }} disabled={todo.status} onClick={() => updateTask(todo.id)}>{todo.status ? "done" : "pending"}</button>
+            </div>
 
-          <p>{todo.status ? "done" : "pending"}</p>
-          <button onClick={() => delTask(todo.id)}>del</button>
-          <button onClick={() => updateTask(todo.id)}>ckeck</button>
-        </div>
-      })}
+          </div>
+        })}
+      </div>
+
+
 
 
     </div>
