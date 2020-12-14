@@ -42,6 +42,7 @@ export default function Home() {
 
   const [addTodo] = useMutation(ADD_TODO);
   const [delTodo] = useMutation(DEL_TODO);
+  const [updateTodo] = useMutation(UPDATE_TODO);
   const addTask = () => {
     addTodo({
       variables: {
@@ -59,9 +60,17 @@ export default function Home() {
       },
       refetchQueries: [{ query: GET_TODOS }]
     })
-    console.log("done")
-    inputText.value = "";
   }
+  const updateTask = (id) => {
+    updateTodo({
+      variables: {
+        id: id
+      },
+      refetchQueries: [{ query: GET_TODOS }]
+    })
+
+  }
+
 
   const { loading, error, data } = useQuery(GET_TODOS);
 
@@ -97,6 +106,7 @@ export default function Home() {
 
           <p>{todo.status ? "done" : "pending"}</p>
           <button onClick={() => delTask(todo.id)}>del</button>
+          <button onClick={() => updateTask(todo.id)}>ckeck</button>
         </div>
       })}
 
