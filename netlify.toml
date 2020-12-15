@@ -6,6 +6,3 @@
  [[plugins]]
 package = "@netlify/plugin-functions-install-core" 
 
-[context.production]
-  environment = { FAUNADB= "fnAD89jK7LACByaqsdWFqQRlVxuWKSPZUez8mLnY"}
-

@@ -5,30 +5,28 @@ require('dotenv').config();
 
 const typeDefs = gql`
   type Query {
-    todos: [Todo!]
+    bookmarks: [Bookmark!]
   }
   type Mutation {
-    addTodo(task: String!): Todo
-    delTodo(id: String!): Todo
-    updateTodo(id: String!): Todo
- 
+    addBM(title: String!, url: String!): Bookmark
+    delBM(id: String!): Bookmark
   }
-  type Todo {
+  type Bookmark{
     id: ID!
-    task: String!
-    status: Boolean!
+    title: String!
+    url: String!
   }
 `
 
 const resolvers = {
   Query: {
-    todos: async (root, args, context) => {
+    bookmarks: async (root, args, context) => {
 
       try {
         var adminClient = new faunadb.Client({ secret: process.env.FAUNADB });
         const result = await adminClient.query(
           q.Map(
-            q.Paginate(q.Match(q.Index('task'))),
+            q.Paginate(q.Match(q.Index('bookmarks'))),
             q.Lambda(x => q.Get(x))
           )
         )
@@ -38,8 +36,8 @@ const resolvers = {
         return result.data.map(d => {
           return {
             id: d.ref.id,
-            status: d.data.status,
-            task: d.data.task
+            title: d.data.title,
+            url: d.data.url
           }
         })
       }
@@ -49,17 +47,17 @@ const resolvers = {
     }
   },
   Mutation: {
-    addTodo: async (_, { task }) => {
+    addBM: async (_, { title, url }) => {
 
       try {
         var adminClient = new faunadb.Client({ secret: process.env.FAUNADB });
         const result = await adminClient.query(
           q.Create(
-            q.Collection('todos'),
+            q.Collection('bookmarks'),
             {
               data: {
-                task: task,
-                status: false
+                title,
+                url
               }
             },
           )
@@ -74,13 +72,13 @@ const resolvers = {
         console.log(err)
       }
     },
-    delTodo: async (_, { id }) => {
+    delBM: async (_, { id }) => {
 
       try {
         var adminClient = new faunadb.Client({ secret: process.env.FAUNADB });
         const result = await adminClient.query(
           q.Delete(
-            q.Ref(q.Collection("todos"), id)
+            q.Ref(q.Collection("bookmarks"), id)
           )
         )
         return result.ref.data;
@@ -90,23 +88,6 @@ const resolvers = {
       }
 
     },
-    updateTodo: async (_, { id }) => {
-
-      try {
-        var adminClient = new faunadb.Client({ secret: process.env.FAUNADB });
-        const result = await adminClient.query(
-          q.Update(q.Ref(q.Collection("todos"), id), {
-            data: {
-              status: true
-            }
-          })
-        )
-        return result.ref.data;
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }
   }
 }
 

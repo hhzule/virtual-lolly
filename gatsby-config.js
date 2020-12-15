@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `JAMstack Todos`,
-    description: `Bootcamp JAMstack App.`,
+    title: `Bookmarking App`,
+    description: `Gatsby-TypeScript Graphql FaunaDB`,
     author: `zule huma`,
-  }
+  },
+  plugins: ["gatsby-plugin-typescript"],
 }
