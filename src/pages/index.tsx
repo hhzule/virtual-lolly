@@ -50,17 +50,27 @@ export default function Home() {
     if (!sec_inputText.value) {
       alert("Enter a title to save")
     }
-    addBM({
-      variables: {
-        title: inputText.value,
-        url: sec_inputText.value,
-      },
-      refetchQueries: [{ query: GET_BM }],
-    })
+    var reg = inputText.value
+    var res = reg.match(
+      /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+    )
+    if (res !== null) {
+      addBM({
+        variables: {
+          title: inputText.value,
+          url: sec_inputText.value,
+        },
+        refetchQueries: [{ query: GET_BM }],
+      })
+    } else {
+      alert("Enter a valid url")
+    }
+
     // console.log("done")
     inputText.value = ""
     sec_inputText.value = ""
   }
+
   const del = id => {
     delBM({
       variables: {
@@ -114,7 +124,7 @@ export default function Home() {
               color: "white",
             }}
           >
-            <h3> URL </h3>
+            <h3> URL / Title</h3>
             <input
               style={{
                 padding: "2px 20px",
@@ -142,7 +152,7 @@ export default function Home() {
               color: "white",
             }}
           >
-            <h3> Title </h3>
+            <h3> Note To Self</h3>
             <input
               style={{
                 padding: "2px 20px",
@@ -219,6 +229,7 @@ export default function Home() {
                     }}
                   >
                     <p> {bm.title} </p>
+                    <br />
                     <p> {bm.url} </p>
                   </div>
 
