@@ -12,18 +12,19 @@ module.exports = {
       // Override the file regex for CSS modules
       sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
     },
-  }, {
-      resolve: "gatsby-source-graphql",
-      options: {
-        typeName: "lollies",
-        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-        fieldName: "lollies",
-        // Url to query from
-        url: "/.netlify/functions/virtual",
+  },
+    // {
+    //     resolve: "gatsby-source-graphql",
+    //     options: {
+    //       typeName: "lollies",
+    //       // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+    //       fieldName: "lollies",
+    //       // Url to query from
+    //       url: "/.netlify/functions/virtual",
 
 
-      },
-    },
+    //     },
+    // },
   ],
 }
 
