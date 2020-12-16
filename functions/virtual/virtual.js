@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server-lambda')
 const shorlid = require("shortid")
+const axios = require("axios")
 var faunadb = require('faunadb'),
 
   q = faunadb.query;
@@ -8,9 +9,9 @@ require('dotenv').config();
 const typeDefs = gql`
   type Query {
    getLolly: [Lolly]
+  
   }
   type Lolly {
-    id: ID!
     first: String!
     second: String!
     third: String!
@@ -20,11 +21,11 @@ const typeDefs = gql`
     url: String!
   }
   type Mutation {
-    addLolly( first: String!,
-      second: String!,
-      third: String!,
-      from: String!,
-      message: String!,
+    addLolly( first: String!
+      second: String!
+      third: String!
+      from: String!
+      message: String!
       giftedto: String!): Lolly
   }
 `
@@ -44,7 +45,7 @@ const resolvers = {
         return result.data.map(d => {
 
           return {
-            id: d.ref.id,
+
             first: d.data.first,
             second: d.data.second,
             third: d.data.third,
@@ -58,7 +59,18 @@ const resolvers = {
       } catch (e) {
         console.log(e, "error")
       }
-    }
+    },
+    // getLollyByUrl: async (_, { url }) => {
+    //   try {
+    //     const result = await Client.query(
+    //       q.Get(q.Match(q.Index("lolly")))
+    //     );
+    //     return result.data;
+    //   } catch (e) {
+    //     return error.toString();
+    //   }
+    // }
+
   },
   Mutation: {
     addLolly: async (_, { first, second, third, from, message, giftedto }, context) => {
@@ -81,6 +93,8 @@ const resolvers = {
             },
           )
         )
+        // const rebuild = await axios.post(process.env.NETLIFY_HOOK_URL)
+        // console.log(rebuild, "rebuild")
 
         return {
           ...result.ref.data,

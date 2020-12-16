@@ -1,48 +1,7 @@
 import * as React from "react"
 import { navigate } from "gatsby"
-import Lolly from "../components/svg"
-import { Formik, Form, Field, ErrorMessage } from "formik"
-import * as Yup from "yup"
-import { Figure } from "./types"
-import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
-// const GET_LOLLY = gql`
-//   query lolly {
-//     getLolly {
-//       id
-//       first
-//       second
-//       third
-//       from
-//       message
-//       giftedto
-//       url
-//     }
-//   }
-// `
-const ADD_LOLLY = gql`
-  mutation addLolly(
-    $first: String!
-    $second: String!
-    $third: String!
-    $from: String!
-    $message: String!
-    $giftedto: String!
-  ) {
-    addLolly(
-      first: $first
-      second: $second
-      third: $third
-      from: $from
-      message: $message
-      giftedto: $giftedto
-    ) {
-      id
-    }
-  }
-`
-// markup
 const IndexPage = () => {
   // const [first, setFirst] = React.useState<Figure>("#d52358")
   // const [second, setSecond] = React.useState<Figure>("#e95946")
