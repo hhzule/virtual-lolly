@@ -5,18 +5,18 @@ module.exports = {
     author: `zule huma`,
   },
   plugins: ["gatsby-plugin-typescript",
-    // {
-    //     resolve: "gatsby-source-graphql",
-    //     options: {
-    //       typeName: "lollies",
-    //       // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-    //       fieldName: "lollies",
-    //       // Url to query from
-    //       url: "/.netlify/functions/virtual",
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "lollies",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "lollies",
+        // Url to query from
+        url: "/https://virtal-lolly-zh.netlify.app/.netlify/functions/virtual",
 
 
-    //     },
-    // },
+      },
+    },
   ],
 }
 
