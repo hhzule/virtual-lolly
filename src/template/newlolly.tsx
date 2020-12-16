@@ -1,6 +1,6 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import Lolly from "../components/svg"
+// import { graphql, Link } from "gatsby"
+// import Lolly from "../components/svg"
 
 // export const query = graphql`
 //   query MyQuery($url: String!) {
@@ -22,7 +22,7 @@ const NewLolly = ({ pageContext }) => {
   console.log(pageContext, "template")
   return (
     <div>
-      <Lolly
+      {/* <Lolly
         first={pageContext.first}
         second={pageContext.second}
         third={pageContext.third}
@@ -36,7 +36,7 @@ const NewLolly = ({ pageContext }) => {
           <Link to="/createLolly"> make your own</Link> to send to a friend who
           deserve some sugary treat which won't rot their teeth...
         </p>
-      </div>
+      </div> */}
     </div>
   )
 }
