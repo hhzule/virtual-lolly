@@ -1,5 +1,5 @@
 import React from "react"
-import { Figure } from "../pages/types"
+import { Figure } from "../../types"
 
 export interface Props {
   first: Figure

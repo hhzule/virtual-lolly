@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Bookmarking App`,
+    title: `virtual-lolly`,
     description: `Gatsby-TypeScript Graphql FaunaDB`,
     author: `zule huma`,
   },

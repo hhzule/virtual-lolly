@@ -2,7 +2,7 @@ import * as React from "react"
 import Lolly from "../components/svg"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
-import { Figure } from "./types"
+import { Figure } from "../../types"
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
