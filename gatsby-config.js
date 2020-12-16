@@ -12,7 +12,7 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "lollies",
         // Url to query from
-        url: "/https://virtal-lolly-zh.netlify.app/.netlify/functions/virtual",
+        url: "https://virtal-lolly-zh.netlify.app/.netlify/functions/virtual",
 
 
       },
