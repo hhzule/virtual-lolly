@@ -4,15 +4,7 @@ module.exports = {
     description: `Gatsby-TypeScript Graphql FaunaDB`,
     author: `zule huma`,
   },
-  plugins: ["gatsby-plugin-typescript", {
-    resolve: `gatsby-plugin-sass`,
-    options: {
-      // Override the file regex for SASS
-      sassRuleTest: /\.global\.s(a|c)ss$/,
-      // Override the file regex for CSS modules
-      sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
-    },
-  },
+  plugins: ["gatsby-plugin-typescript",
     // {
     //     resolve: "gatsby-source-graphql",
     //     options: {
