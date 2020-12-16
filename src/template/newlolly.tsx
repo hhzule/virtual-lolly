@@ -16,8 +16,6 @@ import React from "react"
 //   }
 // `
 
-const isBrowser = () => typeof window !== "undefined"
-
 const NewLolly = ({ pageContext }) => {
   console.log(pageContext, "template")
   return (
