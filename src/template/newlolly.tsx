@@ -5,7 +5,7 @@ import Lolly from "../components/svg"
 const isBrowser = () => typeof window !== "undefined"
 
 const NewLolly = ({ pageContext }) => {
-  console.log(pageContext, "template")
+  // console.log(pageContext, "template")
   return (
     <div>
       <Lolly

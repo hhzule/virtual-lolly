@@ -66,8 +66,8 @@ const resolvers = {
         const result = await adminClient.query(
           q.Get(q.Match(q.Index("url"), url))
         );
-        console.log(result.data)
-        console.log("imrunnig")
+        // console.log(result.data)
+        // console.log("imrunnig")
         return result.data
 
       } catch (e) {
@@ -99,7 +99,7 @@ const resolvers = {
         )
         // const rebuild = await axios.post(process.env.NETLIFY_HOOK)
         // console.log(rebuild, "rebuild")
-        console.log(result.data)
+        // console.log(result.data)
         return result.data;
       }
       catch (err) {

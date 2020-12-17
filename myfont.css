@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "MyWebFont";
+  src: url("./src/OZpGg_pnoDtINPfRIlLohlvHwQ.woff2"); /* IE9 Compat Modes */
+}
+.hellocard {
+  font-family: "MyWebFont" !important;
+  font-size: 300% !important;
+  letter-spacing: 5px;
+}
+.main-btn {
+  padding: 10px 80px;
+  font-size: 150%;
+  border: 3px solid #fa73d9;
+  border-radius: 100px;
+  background-color: white;
+  font-family: "MyWebFont";
+  letter-spacing: 5px;
+  transition: 0.5s ease-out;
+  align-self: center;
+  cursor: pointer;
+}
+.main-btn:hover {
+  transition: 0.5s ease-out;
+  background-color: #fa73d9;
+  color: white;
+}
+.min-h1 {
+  font-family: "MyWebFont";
+  letter-spacing: 5px;
+  text-align: center;
+}
+#___gatsby {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+body {
+  background-color: #ffb8de;
+}
+.final {
+  font-family: "MyWebFont" !important;
+  font-size: x-large;
+  letter-spacing: 2px;
+}

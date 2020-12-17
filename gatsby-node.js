@@ -22,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
 
   data.lollies.getLolly.forEach((d) => {
-    console.log(d.first, "in")
+    // console.log(d.first, "in")
     createPage({
       path: `lolly/${d.url}`,
       component: path.resolve(`./src/template/newlolly.tsx`),
