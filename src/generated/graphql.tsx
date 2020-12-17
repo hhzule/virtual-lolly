@@ -15,176 +15,154 @@ export type Scalars = {
   Upload: any;
 };
 
-export type Bookmark = {
-  __typename?: 'Bookmark';
-  id: Scalars['ID'];
-  title: Scalars['String'];
-  url: Scalars['String'];
-};
-
 export enum CacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'
 }
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  addBM?: Maybe<Bookmark>;
-  delBM?: Maybe<Bookmark>;
-};
-
-
-export type MutationAddBmArgs = {
-  title: Scalars['String'];
+export type Lolly = {
+  __typename?: 'Lolly';
+  first: Scalars['String'];
+  second: Scalars['String'];
+  third: Scalars['String'];
+  from: Scalars['String'];
+  message: Scalars['String'];
+  giftedto: Scalars['String'];
   url: Scalars['String'];
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  addLolly?: Maybe<Lolly>;
+};
 
-export type MutationDelBmArgs = {
-  id: Scalars['String'];
+
+export type MutationAddLollyArgs = {
+  first: Scalars['String'];
+  second: Scalars['String'];
+  third: Scalars['String'];
+  from: Scalars['String'];
+  message: Scalars['String'];
+  giftedto: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  bookmarks?: Maybe<Array<Bookmark>>;
+  getLolly?: Maybe<Array<Maybe<Lolly>>>;
+  getByUrl?: Maybe<Lolly>;
 };
 
 
-export type AllbookmarksQueryVariables = Exact<{ [key: string]: never; }>;
+export type QueryGetByUrlArgs = {
+  url: Scalars['String'];
+};
 
 
-export type AllbookmarksQuery = (
-  { __typename?: 'Query' }
-  & { bookmarks?: Maybe<Array<(
-    { __typename?: 'Bookmark' }
-    & Pick<Bookmark, 'title' | 'id' | 'url'>
-  )>> }
-);
-
-export type AddBmMutationVariables = Exact<{
-  title: Scalars['String'];
+export type LollyurlQueryVariables = Exact<{
   url: Scalars['String'];
 }>;
 
 
-export type AddBmMutation = (
-  { __typename?: 'Mutation' }
-  & { addBM?: Maybe<(
-    { __typename?: 'Bookmark' }
-    & Pick<Bookmark, 'id'>
+export type LollyurlQuery = (
+  { __typename?: 'Query' }
+  & { getByUrl?: Maybe<(
+    { __typename?: 'Lolly' }
+    & Pick<Lolly, 'first' | 'second' | 'third' | 'from' | 'message' | 'giftedto' | 'url'>
   )> }
 );
 
-export type DelBmMutationVariables = Exact<{
-  id: Scalars['String'];
+export type AddLollyMutationVariables = Exact<{
+  first: Scalars['String'];
+  second: Scalars['String'];
+  third: Scalars['String'];
+  from: Scalars['String'];
+  message: Scalars['String'];
+  giftedto: Scalars['String'];
 }>;
 
 
-export type DelBmMutation = (
+export type AddLollyMutation = (
   { __typename?: 'Mutation' }
-  & { delBM?: Maybe<(
-    { __typename?: 'Bookmark' }
-    & Pick<Bookmark, 'id'>
+  & { addLolly?: Maybe<(
+    { __typename?: 'Lolly' }
+    & Pick<Lolly, 'url'>
   )> }
 );
 
 
-export const AllbookmarksDocument = gql`
-    query allbookmarks {
-  bookmarks {
-    title
-    id
+export const LollyurlDocument = gql`
+    query lollyurl($url: String!) {
+  getByUrl(url: $url) {
+    first
+    second
+    third
+    from
+    message
+    giftedto
     url
   }
 }
     `;
 
 /**
- * __useAllbookmarksQuery__
+ * __useLollyurlQuery__
  *
- * To run a query within a React component, call `useAllbookmarksQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllbookmarksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useLollyurlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLollyurlQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useAllbookmarksQuery({
+ * const { data, loading, error } = useLollyurlQuery({
  *   variables: {
- *   },
- * });
- */
-export function useAllbookmarksQuery(baseOptions?: Apollo.QueryHookOptions<AllbookmarksQuery, AllbookmarksQueryVariables>) {
-        return Apollo.useQuery<AllbookmarksQuery, AllbookmarksQueryVariables>(AllbookmarksDocument, baseOptions);
-      }
-export function useAllbookmarksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllbookmarksQuery, AllbookmarksQueryVariables>) {
-          return Apollo.useLazyQuery<AllbookmarksQuery, AllbookmarksQueryVariables>(AllbookmarksDocument, baseOptions);
-        }
-export type AllbookmarksQueryHookResult = ReturnType<typeof useAllbookmarksQuery>;
-export type AllbookmarksLazyQueryHookResult = ReturnType<typeof useAllbookmarksLazyQuery>;
-export type AllbookmarksQueryResult = Apollo.QueryResult<AllbookmarksQuery, AllbookmarksQueryVariables>;
-export const AddBmDocument = gql`
-    mutation addBM($title: String!, $url: String!) {
-  addBM(title: $title, url: $url) {
-    id
-  }
-}
-    `;
-export type AddBmMutationFn = Apollo.MutationFunction<AddBmMutation, AddBmMutationVariables>;
-
-/**
- * __useAddBmMutation__
- *
- * To run a mutation, you first call `useAddBmMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddBmMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addBmMutation, { data, loading, error }] = useAddBmMutation({
- *   variables: {
- *      title: // value for 'title'
  *      url: // value for 'url'
  *   },
  * });
  */
-export function useAddBmMutation(baseOptions?: Apollo.MutationHookOptions<AddBmMutation, AddBmMutationVariables>) {
-        return Apollo.useMutation<AddBmMutation, AddBmMutationVariables>(AddBmDocument, baseOptions);
+export function useLollyurlQuery(baseOptions: Apollo.QueryHookOptions<LollyurlQuery, LollyurlQueryVariables>) {
+        return Apollo.useQuery<LollyurlQuery, LollyurlQueryVariables>(LollyurlDocument, baseOptions);
       }
-export type AddBmMutationHookResult = ReturnType<typeof useAddBmMutation>;
-export type AddBmMutationResult = Apollo.MutationResult<AddBmMutation>;
-export type AddBmMutationOptions = Apollo.BaseMutationOptions<AddBmMutation, AddBmMutationVariables>;
-export const DelBmDocument = gql`
-    mutation delBM($id: String!) {
-  delBM(id: $id) {
-    id
+export function useLollyurlLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LollyurlQuery, LollyurlQueryVariables>) {
+          return Apollo.useLazyQuery<LollyurlQuery, LollyurlQueryVariables>(LollyurlDocument, baseOptions);
+        }
+export type LollyurlQueryHookResult = ReturnType<typeof useLollyurlQuery>;
+export type LollyurlLazyQueryHookResult = ReturnType<typeof useLollyurlLazyQuery>;
+export type LollyurlQueryResult = Apollo.QueryResult<LollyurlQuery, LollyurlQueryVariables>;
+export const AddLollyDocument = gql`
+    mutation addLolly($first: String!, $second: String!, $third: String!, $from: String!, $message: String!, $giftedto: String!) {
+  addLolly(first: $first, second: $second, third: $third, from: $from, message: $message, giftedto: $giftedto) {
+    url
   }
 }
     `;
-export type DelBmMutationFn = Apollo.MutationFunction<DelBmMutation, DelBmMutationVariables>;
+export type AddLollyMutationFn = Apollo.MutationFunction<AddLollyMutation, AddLollyMutationVariables>;
 
 /**
- * __useDelBmMutation__
+ * __useAddLollyMutation__
  *
- * To run a mutation, you first call `useDelBmMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDelBmMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useAddLollyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddLollyMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [delBmMutation, { data, loading, error }] = useDelBmMutation({
+ * const [addLollyMutation, { data, loading, error }] = useAddLollyMutation({
  *   variables: {
- *      id: // value for 'id'
+ *      first: // value for 'first'
+ *      second: // value for 'second'
+ *      third: // value for 'third'
+ *      from: // value for 'from'
+ *      message: // value for 'message'
+ *      giftedto: // value for 'giftedto'
  *   },
  * });
  */
-export function useDelBmMutation(baseOptions?: Apollo.MutationHookOptions<DelBmMutation, DelBmMutationVariables>) {
-        return Apollo.useMutation<DelBmMutation, DelBmMutationVariables>(DelBmDocument, baseOptions);
+export function useAddLollyMutation(baseOptions?: Apollo.MutationHookOptions<AddLollyMutation, AddLollyMutationVariables>) {
+        return Apollo.useMutation<AddLollyMutation, AddLollyMutationVariables>(AddLollyDocument, baseOptions);
       }
-export type DelBmMutationHookResult = ReturnType<typeof useDelBmMutation>;
-export type DelBmMutationResult = Apollo.MutationResult<DelBmMutation>;
-export type DelBmMutationOptions = Apollo.BaseMutationOptions<DelBmMutation, DelBmMutationVariables>;
+export type AddLollyMutationHookResult = ReturnType<typeof useAddLollyMutation>;
+export type AddLollyMutationResult = Apollo.MutationResult<AddLollyMutation>;
+export type AddLollyMutationOptions = Apollo.BaseMutationOptions<AddLollyMutation, AddLollyMutationVariables>;

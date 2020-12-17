@@ -1,5 +1,5 @@
 overwrite: true
-schema: "http://localhost:8888/.netlify/functions/bookmarks"
+schema: "http://localhost:8888/.netlify/functions/virtual"
 documents: "src/**/*.{ts,tsx}"
 generates:
   src/generated/graphql.tsx:

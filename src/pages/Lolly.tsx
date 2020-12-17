@@ -3,6 +3,8 @@ import Lolly from "../components/svg"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Figure } from "../../types"
+import { Link } from "gatsby"
+import { Router } from "@reach/router"
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
@@ -19,6 +21,7 @@ import gql from "graphql-tag"
 //     }
 //   }
 // `
+
 const ADD_LOLLY = gql`
   mutation addLolly(
     $first: String!
@@ -47,6 +50,7 @@ const IndexPage = () => {
   const [third, setThird] = React.useState<Figure>("#deaa43")
   //   const { data } = useQuery(GET_LOLLY)
   const [addLolly] = useMutation(ADD_LOLLY)
+  const [nl, setNl] = React.useState()
   //   console.log(data, "data")
 
   return (
@@ -124,8 +128,8 @@ const IndexPage = () => {
               message: Yup.string().required("Required"),
               giftedto: Yup.string().required("Required"),
             })}
-            onSubmit={(values, actions) => {
-              addLolly({
+            onSubmit={async (values, actions) => {
+              const nlolly = await addLolly({
                 variables: {
                   first,
                   second,
@@ -135,6 +139,10 @@ const IndexPage = () => {
                   giftedto: values.giftedto,
                 },
               })
+              const newL = nlolly && nlolly.data && nlolly.data.addLolly.url
+              setNl(newL)
+              console.log(nl)
+
               // actions.setSubmitting(false)
               console.log("fn ran")
             }}
@@ -182,6 +190,13 @@ const IndexPage = () => {
             )}
           </Formik>
         </div>
+        {nl ? (
+          <p>
+            send this url https://virtal-lolly-zh.netlify.app/lolly/{`${nl}`} to
+            your friend
+          </p>
+        ) : null}
+        {/* {nl ? <p>send this url <Link></Link>to gift your friend the lolly</p>} */}
       </div>
     </div>
   )

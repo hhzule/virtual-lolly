@@ -9,7 +9,7 @@ require('dotenv').config();
 const typeDefs = gql`
   type Query {
    getLolly: [Lolly]
-  
+  getByUrl(url: String!): Lolly
   }
   type Lolly {
     first: String!
@@ -60,16 +60,20 @@ const resolvers = {
         console.log(e, "error")
       }
     },
-    // getLollyByUrl: async (_, { url }) => {
-    //   try {
-    //     const result = await Client.query(
-    //       q.Get(q.Match(q.Index("lolly")))
-    //     );
-    //     return result.data;
-    //   } catch (e) {
-    //     return error.toString();
-    //   }
-    // }
+    getByUrl: async (_, { url }) => {
+      try {
+        var adminClient = new faunadb.Client({ secret: process.env.FAUNADB });
+        const result = await adminClient.query(
+          q.Get(q.Match(q.Index("url"), url))
+        );
+        console.log(result.data)
+        console.log("imrunnig")
+        return result.data
+
+      } catch (e) {
+        return error.toString();
+      }
+    }
 
   },
   Mutation: {
@@ -95,11 +99,8 @@ const resolvers = {
         )
         // const rebuild = await axios.post(process.env.NETLIFY_HOOK)
         // console.log(rebuild, "rebuild")
-
-        return {
-          ...result.ref.data,
-
-        };
+        console.log(result.data)
+        return result.data;
       }
       catch (err) {
         console.log(err)
