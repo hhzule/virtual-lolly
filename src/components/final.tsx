@@ -37,6 +37,31 @@ const IndexPage = ({ data }) => {
             that'll satisfy their sweet tooth
           </p>
         </div>
+        <div style={{ padding: "50px 0" }}>
+          <p
+            style={{
+              margin: "0 auto",
+              textAlign: "center",
+              fontFamily: "sans-serif",
+              fontSize: "130%",
+              fontWeight: "bold",
+            }}
+          >
+            <span style={{ fontStyle: "italic", fontWeight: "bold" }}>
+              {" "}
+              Send This URL{" "}
+            </span>
+            <a
+              href={`https://virtal-lolly-zh.netlify.app/lolly/${data.url}`}
+              target="_blank"
+              style={{ color: "#FA73D9" }}
+            >
+              {" "}
+              https://virtal-lolly-zh.netlify.app/lolly/{`${data.url}`}
+            </a>{" "}
+            To Your Friend
+          </p>
+        </div>
       </div>
     </>
   )
