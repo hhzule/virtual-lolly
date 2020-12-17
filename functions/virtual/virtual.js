@@ -97,7 +97,7 @@ const resolvers = {
             },
           )
         )
-        // const rebuild = await axios.post(process.env.NETLIFY_HOOK)
+        const rebuild = await axios.post(process.env.NETLIFY_HOOK)
         // console.log(rebuild, "rebuild")
         // console.log(result.data)
         return result.data;

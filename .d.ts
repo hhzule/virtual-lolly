@@ -3,3 +3,4 @@ declare module "*.png" {
   export default fileName
 }
 declare module "*.jpeg"
+declare module "*.gif"
